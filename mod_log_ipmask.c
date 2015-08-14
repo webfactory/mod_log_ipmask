@@ -166,7 +166,7 @@ static const char *log_remote_address_masked(request_rec* pRequest, char* pszMas
 {
 	char* pszAddress;
 
-	pszAddress = pRequest->connection->remote_ip;
+	pszAddress = pRequest->connection->client_ip;
 
 	return get_filtered_ip(pszAddress, pszMask, pRequest->pool);
 }
