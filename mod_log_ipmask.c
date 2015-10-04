@@ -165,7 +165,12 @@ static const char *log_remote_address_masked(request_rec* pRequest, char* pszMas
 {
 	char* pszAddress;
 
-	pszAddress = pRequest->connection->client_ip;
+	if (!strcmp(pszMask, "c")) {
+		// Apache 2.4: %{c}a ist die IP-Adresse der Connection, mglw. ein Proxy
+		return pRequest->connection->client_ip;
+	}
+
+	pszAddress = pRequest->useragent_ip;
 
 	return get_filtered_ip(pszAddress, pszMask, pRequest->pool);
 }
