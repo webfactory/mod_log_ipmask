@@ -124,7 +124,7 @@ static const char* get_filtered_ip(char* pszAddress, char* pszFilterMask, apr_po
 	} else {
 		/* ok */
 		pszFilteredIP = apr_pcalloc(pPool, sizeof("xxx.xxx.xxx.xxx"));
-		ipmask_inet_ntop4((char*)pIPSubNet->sub, pszFilteredIP);
+		ipmask_inet_ntop4((unsigned char*)pIPSubNet->sub, pszFilteredIP);
 	}
 
 	return pszFilteredIP;
